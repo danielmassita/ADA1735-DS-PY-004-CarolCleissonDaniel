@@ -29,3 +29,10 @@ ___
 ___
 
 <!-- TESTE ALTERANDO CODIGO NO VS CODE -->
+
+### Histórico do VS Code funcionando (comando de apagar pasta duplicada)
+
+![Imagem antes](image.png)
+
+![Imagem depois](image-1.png)
+
