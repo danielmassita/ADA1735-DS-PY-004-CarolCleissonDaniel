@@ -28,3 +28,9 @@ ___
 
 ___
 
+### Git Clone para o VS Code via Terminal
+
+<img width="1920" height="1072" alt="image" src="https://github.com/user-attachments/assets/80fb7f5f-cdc2-4c20-9753-89e2c16ef276" />
+
+<img width="947" height="205" alt="image" src="https://github.com/user-attachments/assets/51a5674f-86a7-4c08-b632-f8c34c69f719" />
+
