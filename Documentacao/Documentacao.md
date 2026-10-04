@@ -28,3 +28,7 @@ ___
 
 ___
 
+### Histórico de Comandos via VS Code após INIT e FETCH
+
+<!-- teste comentário via VS Code 2026-10-06 11:43h Daniel -->
+
