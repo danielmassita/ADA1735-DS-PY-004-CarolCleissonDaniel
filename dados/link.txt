@@ -1,3 +1,7 @@
-Link em TXT da Base a ser definida
+Base de Dados
 
-https://www.google.com.br
+Arquivo: MATRIZ_CR_TIPO_PESSOA_2026.csv
+
+A base não foi incluída no GitHub devido ao tamanho do arquivo (aproximadamente 77 MB).
+
+O arquivo é utilizado pelos integrantes do grupo durante a análise exploratória dos dados.
