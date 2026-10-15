@@ -33,6 +33,7 @@ projeto-credito-rural-2025/
 └── notebooks/
     └── analise.ipynb              <- Pipeline completo em Python com código e saídas executadas
 
+```
 
 ---
 
@@ -100,8 +101,6 @@ projeto-credito-rural-2025/
 > garantindo alta performance computacional sem a necessidade de laços `for`.
 
 ### Q4.
-
-
 
 ___
 
