@@ -1,10 +1,9 @@
-Aqui está o arquivo **`README.md` completo e estruturado**, pronto para ser copiado e colado na raiz do repositório Git do seu projeto.
+<img width="1024" height="339" alt="image" src="https://github.com/user-attachments/assets/93b746a1-d60a-48f5-bcfe-4441a66c2834" />
 
-Ele cobre desde a apresentação do dataset oficial e das perguntas de negócio até o mapeamento detalhado da **adequação de 100% dos requisitos** da rubrica de avaliação.
 
 ---
 
-```markdown
+
 # 🌾 Análise Exploratória de Crédito Rural no Brasil (2025)
 > **Projeto Final — DS-PY-004: Análise Exploratória de Dados com Python, NumPy, Pandas e Git**  
 > **Instituição:** Ada Tech  
@@ -115,8 +114,7 @@ Below is the complete compliance audit showing how each requirement was satisfie
 
 1. **Clonar o Repositório:**
 ```bash
-git clone [https://github.com/seu-usuario/projeto-credito-rural-2025.git](https://github.com/seu-usuario/projeto-credito-rural-2025.git)
-cd projeto-credito-rural-2025
+git clone https://github.com/danielmassita/ADA1735-DS-PY-004-CarolCleissonDaniel/
 
 ```
 
@@ -124,7 +122,11 @@ cd projeto-credito-rural-2025
 2. **Instalar Dependências:**
 ```bash
 pip install pandas numpy matplotlib seaborn jupyter
-
+sudo apt install python3-numpy
+sudo apt install python3-pandas
+sudo apt install python3-scikit
+sudo apt install python3-seaborn
+sudo apt install python3-matplotlib
 ```
 
 
@@ -147,3 +149,5 @@ jupyter notebook notebooks/analise.ipynb
 ```
 
 ```
+
+<img width="3413" height="1549" alt="Code_Generated_Image" src="https://github.com/user-attachments/assets/35a8201f-4791-4f42-acc0-1b34dd84b762" />
