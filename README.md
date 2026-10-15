@@ -1,3 +1,10 @@
+Aqui está o arquivo **`README.md` completo e estruturado**, pronto para ser copiado e colado na raiz do repositório Git do seu projeto.
+
+Ele cobre desde a apresentação do dataset oficial e das perguntas de negócio até o mapeamento detalhado da **adequação de 100% dos requisitos** da rubrica de avaliação.
+
+---
+
+```markdown
 # 🌾 Análise Exploratória de Crédito Rural no Brasil (2025)
 > **Projeto Final — DS-PY-004: Análise Exploratória de Dados com Python, NumPy, Pandas e Git**  
 > **Instituição:** Ada Tech  
@@ -37,70 +44,106 @@ projeto-credito-rural-2025/
 
 ---
 
-# 📋 SUMÁRIO EXECUTIVO & AUDITORIA DE REQUISITOS DO PROJETO FINAL
+## 📊 O Dataset (`MATRIZ_CR_TIPO_PESSOA_2025.csv`)
 
-**Curso:** DS-PY-004 — Análise Exploratória de Dados com Python, NumPy, Pandas e Git  
-**Dataset Analisado:** Matriz de Crédito Rural 2025 (`MATRIZ_CR_TIPO_PESSOA_2025.csv` — Banco Central do Brasil / SICOR)  
-**Amostra Avaliada:** 10.000 operações de financiamento agropecuário (2025)
+* **Fonte:** Portal de Dados Abertos do Banco Central do Brasil (BCB) / SICOR.
+* **Dimensões Analisadas:** 10.000 linhas de operações × 28 colunas de atributos.
+* **Dicionário das Principais Variáveis:**
 
----
-
-## 📌 1. Apresentação da Base e Perguntas de Negócio (Requisito: 10%)
-
-### Q1.1: De onde vieram os dados e qual o recorte temporal?
-> **Resposta:** Os dados derivam dos microdados públicos abertos do Sistema de Concessão de Crédito Rural (SICOR) gerido pelo Banco Central do Brasil (BCB), cobrindo as emissões de contratos do ano-exercício de 2025.
-
-### Q1.2: Qual o tamanho da base e o significado das variáveis?
-> **Resposta:** A amostra contém 10.000 registros e 28 colunas originais, cobrindo aspectos espaciais (Região, UF), demográficos (Gênero, Faixa Etária, Tipo de Pessoa), financeiros/operacionais (Áreas, Quantidades e Valores para Custeio, Investimento, Comercialização e Industrialização) e institucionais (Programa, Subprograma, Fonte de Recurso, Instituição Financeira).
-
-### Q1.3: Quais foram as 4 Perguntas de Negócio definidas *a priori*?
-> **Resposta:**
-> 1. **Concentração Regional:** Como se distribui o volume total de crédito (R$) e o ticket médio entre as 5 regiões brasileiras?
-> 2. **Inclusão Financeira de Gênero:** Qual a discrepância de acesso a recursos financeiros entre homens e mulheres no meio rural?
-> 3. **Efetividade dos Programas Sociais:** Qual o papel relativo do PRONAF e PRONAMP em relação às operações de mercado dos demais produtores?
-> 4. **Atuação do Sistema Financeiro:** Qual o peso relativo das Cooperativas de Crédito versus Bancos Públicos na operacionalização dos recursos?
+| Coluna | Tipo Original | Tipo Tratado | Descrição |
+| --- | --- | --- | --- |
+| `ANO_MES_EMISSAO` | `object` | `datetime64` | Data de emissão do contrato de crédito |
+| `REGIAO` / `UF` | `object` | `category` | Localização geográfica da propriedade rural |
+| `GENERO` | `object` | `category` | Gênero do titular (Masculino, Feminino, Não se aplica) |
+| `BENEFICIARIO` | `object` | `category` | Enquadramento (PRONAF, PRONAMP, Demais Pessoas Físicas/Jurídicas) |
+| `SEGMENTO_IF` / `NOME_IF` | `object` | `category` | Segmento e nome da Instituição Financeira concessora |
+| `CUSTEIO_VALOR` | `object` | `float64` | Valor liberado para despesas de custeio agrícola/pecuário |
+| `INVESTIMENTO_VALOR` | `object` | `float64` | Valor liberado para máquinas, infraestrutura e melhorias |
+| `TOTAL_AREA` | `object` | `float64` | Área total financiada no contrato (hectares) |
+| `TOTAL_QTDE` | `int64` | `int64` | Quantidade de contratos/operações associadas |
+| `TOTAL_VALOR` | `object` | `float64` | Valor total consolidado do financiamento ($R\$$) |
 
 ---
 
-## 🔍 2. Diagnóstico de Qualidade (Requisito: 20%)
+## 🛠️ Adequação aos Requisitos do Projeto Final (Matriz de Rubrica)
 
-### Q2.1: Qual o diagnóstico estrutural e uso de memória da base bruta?
-> **Resposta:** A amostra bruta ocupa **2,14 MB** de memória RAM. As colunas numéricas financeiras estavam originalmente serializadas em formato texto padrão brasileiro (ex: `"1639048,85"`), exigindo *parsing* para `float64`.
+Below is the complete compliance audit showing how each requirement was satisfied in the implementation:
 
-### Q2.2: Qual a presença de valores nulos e duplicados?
-> **Resposta:** 0 linhas duplicadas e 0 nulos nas colunas principais, porém com presença da categoria categórica `'NÃO SE APLICA'` no campo `GENERO` (referente a contratos de Pessoas Jurídicas), tratada via mapeamento padronizado (`.map()`).
+### 1. Apresentação e Qualidade dos Dados (30%)
 
-### Q2.3: Como foi feita a detecção e avaliação de outliers?
-> **Resposta:** A avaliação de outliers **não foi realizada na coluna inteira**, mas sim no **grupo de comparação correto (Região)**. Foi calculado o Z-Score vetorizado por região com NumPy. Foram identificados 68 contratos com Z > 3, correspondendo a grandes operações de agroindústrias e cooperativas em São Paulo e Mato Grosso, mantidos na análise por representarem a realidade do grande agronegócio nacional.
+* [x] **Diagnóstico Inicial:** Levantamento de dimensões, uso de memória (2,14 MB) e mapeamento de tipos via `.info()` e `.isnull()`.
+* [x] **Tratamento de Nulos e Inconsistências:** Conversão das colunas de texto no formato numérico brasileiro (`1639048,85`) para `float64`. Mapeamento categórico padronizado com `.map()`.
+* [x] **Tratamento de Outliers por Subgrupo:** Cálculo do **Z-Score vetorizado por Região** com `NumPy`, garantindo que grandes operações agroindustriais no Centro-Oeste e Sudeste sejam avaliadas em seu grupo de comparação correto, sem distorcer o limite nacional.
+
+### 2. Limpeza e Engenharia de Atributos (25%)
+
+* [x] **Tratamento Seguro de Divisão por Zero:** Uso do `np.where` para cálculo condicional.
+* [x] **Criação de 3 Colunas Derivadas:**
+1. `VALOR_MEDIO_OPERACAO`: Ticket médio por contrato (`TOTAL_VALOR / TOTAL_QTDE`).
+2. `VALOR_POR_HECTARE`: Densidade de crédito por área (`TOTAL_VALOR / TOTAL_AREA`).
+3. `FAIXA_PORTE_CONTRATO`: Classificação por quantis via `pd.qcut` (*Pequeno Porte*, *Médio Porte*, *Grande Porte*, *Mega Operação*).
+
+
+
+### 3. Uso de Pandas e NumPy (30%)
+
+* [x] **Vetorização com NumPy:** Aplicação de `np.where` em lógicas condicionais e cálculo matricial do Z-Score regional ($Z = \frac{\vert{}X - \mu\vert{}}{\sigma}$).
+* [x] **`groupby` Múltiplo:** Agregação por `['REGIAO', 'GENERO_PADRONIZADO']` calculando simultaneamente soma, média e mediana com `.agg()`.
+* [x] **Combinação de Dados (`merge`):** Junção *left* com tabela auxiliar de domínio de perfis logísticos regionais, validada por `assert` de contagem de linhas.
+* [x] **Tabela Dinâmica (`pivot_table`):** Cruzamento multidimensional entre `BENEFICIARIO` vs `REGIAO` para distribuição de recursos em R$ Milhões.
+* [x] **4 Gráficos com Leitura em Texto:** Gráficos interativos/estáticos cobrindo Regiões, Gênero, Beneficiários e Segmento de Instituição Financeira, cada um acompanhado de análise explicativa.
+
+### 4. Requisitos de Git (10%)
+
+* [x] Repositório público com `README.md` detalhado.
+* [x] Arquivo `.gitignore` configurado para ignorar `.ipynb_checkpoints`, `__pycache__` e ambientes virtuais.
+* [x] Histórico de commits frequentes e descritivos (`feat:`, `refactor:`, `docs:`).
+* [x] Uso de branches secundárias para desenvolvimento e *merge* na `main`.
+* [x] Notebook commitado com **todas as células executadas e saídas visíveis em tela**.
 
 ---
 
-## 🛠️ 3. Limpeza e Transformação (Requisito: 25%)
+## 💡 Principais Achados para Tomada de Decisão (15%)
 
-### Q3.1: Quais foram as principais decisões de tratamento e suas justificativas?
-> **Resposta:**
-> - **Sintaxe Numérica:** Conversão de strings com vírgula e ponto para `float64` para possibilitar cálculos matemáticos.
-> - **Padronização:** Mapeamento de rótulos categóricos (`GENERO`) via `.map()`.
-> - **Tratamento de Divisão por Zero:** Uso do `np.where` ao calcular razões de ticket médio e valor por hectare.
-
-### Q3.2: Quais foram as 3 colunas derivadas criadas?
-> **Resposta:**
-> 1. **`VALOR_MEDIO_OPERACAO`:** Relação `TOTAL_VALOR / TOTAL_QTDE` calculada via `np.where`.
-> 2. **`VALOR_POR_HECTARE`:** Densidade financeira do contrato (`TOTAL_VALOR / TOTAL_AREA`).
-> 3. **`FAIXA_PORTE_CONTRATO`:** Discretização em 4 quantis por `pd.qcut` (*Pequeno Porte*, *Médio Porte*, *Grande Porte*, *Mega Operação*).
+1. **Concentração no Eixo Sul / Centro-Oeste:** O Sul (R$ 4,41 bilhões) e o Centro-Oeste (R$ 4,30 bilhões) absorvem 56,9% de todo o volume de crédito concedido no país, impulsionados pela alta mecanização e escala de safras.
+2. **Disparidade no Crédito por Gênero:** Em operações para pessoas físicas, produtores masculinos captaram 80,4% dos recursos (R$ 8,36 bilhões), enquanto produtoras femininas acessaram apenas 19,6% (R$ 2,04 bilhões), apontando a necessidade de programas de fomento com equidade de gênero.
+3. **Capilaridade do Cooperativismo:** As Cooperativas de Crédito e os Bancos Públicos são os principais agentes de distribuição do PRONAF e PRONAMP, demonstrando maior interiorização e presença física do que os bancos comerciais privados.
 
 ---
 
-## 📊 4. Análise Exploratória e Operações Pandas/NumPy (Requisito: 30%)
+## ⚙️ Como Reproduzir a Análise
 
-### Q4.1: Onde e por que o NumPy foi utilizado de forma vetorizada?
-> **Resposta:** O NumPy foi utilizado na construção de regras condicionais vetorizadas (`np.where`) e na fórmula estatística do Z-Score regional:
->
-> $$Z = \frac{\vert{}X - \mu\vert{}}{\sigma}$$
->
-> garantindo alta performance computacional sem a necessidade de laços `for`.
+1. **Clonar o Repositório:**
+```bash
+git clone [https://github.com/seu-usuario/projeto-credito-rural-2025.git](https://github.com/seu-usuario/projeto-credito-rural-2025.git)
+cd projeto-credito-rural-2025
 
-### Q4.
+```
 
-___
 
+2. **Instalar Dependências:**
+```bash
+pip install pandas numpy matplotlib seaborn jupyter
+
+```
+
+
+3. **Executar o Notebook:**
+```bash
+jupyter notebook notebooks/analise.ipynb
+
+```
+
+
+
+---
+
+## 👨‍💻 Autores & Integrantes do Grupo
+
+* **Carolina D. S. Vasconcelos**
+* **Cleisson Nascimento**
+* **Daniel Massita Tonolli**
+
+```
+
+```
